@@ -70,3 +70,11 @@ h3 {
 p {
   max-width: 60ch;
 }
+
+a {
+  text-decoration: none;
+}
+
+a:focus {
+  text-decoration: underline;
+}

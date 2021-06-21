@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './App.css';
+import CreateContactButton from './components/createContactButton';
 import ContactForm from './components/contactForm';
 import Contacts from './components/contacts';
 
@@ -22,14 +24,25 @@ class App extends Component {
         phone: '+959333',
       },
     ],
+    isCreateContactOpen: false,
+  };
+
+  toggleCreateContact = () => {
+    const isCreateContactOpen = !this.state.isCreateContactOpen;
+    this.setState({ isCreateContactOpen });
   };
 
   render() {
+    const { isCreateContactOpen } = this.state;
     return (
       <div id="app">
-        
-        <h1>Simple Contacts</h1>
-        <ContactForm />
+        <Link to="/">
+          <h1>Simple Contacts</h1>
+        </Link>
+        <CreateContactButton onCreateContact={this.toggleCreateContact} />
+        {isCreateContactOpen && (
+          <ContactForm handleClose={this.toggleCreateContact} />
+        )}
         <Contacts contacts={this.state.contacts} />
       </div>
     );
