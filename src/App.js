@@ -24,24 +24,24 @@ class App extends Component {
         phone: '+959333',
       },
     ],
-    isCreateContactOpen: false,
+    isContactFormOpened: false,
   };
 
-  toggleCreateContact = () => {
-    const isCreateContactOpen = !this.state.isCreateContactOpen;
-    this.setState({ isCreateContactOpen });
+  toggleContactForm = () => {
+    const isContactFormOpened = !this.state.isContactFormOpened;
+    this.setState({ isContactFormOpened });
   };
 
   render() {
-    const { isCreateContactOpen } = this.state;
+    const { isContactFormOpened } = this.state;
     return (
       <div id="app">
         <Link to="/">
           <h1>Simple Contacts</h1>
         </Link>
-        <CreateContactButton onCreateContact={this.toggleCreateContact} />
-        {isCreateContactOpen && (
-          <ContactForm handleClose={this.toggleCreateContact} />
+        <CreateContactButton onCreateContact={this.toggleContactForm} />
+        {isContactFormOpened && (
+          <ContactForm onContactFormClose={this.toggleContactForm} />
         )}
         <Contacts contacts={this.state.contacts} />
       </div>
