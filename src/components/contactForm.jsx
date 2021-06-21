@@ -2,6 +2,18 @@ import React, { Component } from 'react';
 import './contactForm.css';
 
 class ContactForm extends Component {
+  state = {
+    name: '',
+    email: '',
+    phone: '',
+  };
+
+  handleInputChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    this.setState({ [name]: value });
+  };
+
   render() {
     const { onContactFormClose } = this.props;
 
@@ -16,9 +28,11 @@ class ContactForm extends Component {
               </label>
               <input
                 type="text"
+                name="name"
                 id="name"
                 className="form-control"
                 placeholder="Name"
+                onChange={this.handleInputChange}
               />
             </div>
             <div className="mb-3">
@@ -27,9 +41,11 @@ class ContactForm extends Component {
               </label>
               <input
                 type="email"
+                name="email"
                 id="email"
                 className="form-control"
                 placeholder="Email"
+                onChange={this.handleInputChange}
               />
             </div>
             <div className="mb-3">
@@ -38,9 +54,11 @@ class ContactForm extends Component {
               </label>
               <input
                 type="text"
+                name="phone"
                 id="phone"
                 className="form-control"
                 placeholder="Phone"
+                onChange={this.handleInputChange}
               />
             </div>
             <button className="btn btn-danger" onClick={onContactFormClose}>
