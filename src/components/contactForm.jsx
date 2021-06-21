@@ -3,27 +3,33 @@ import './contactForm.css';
 
 class ContactForm extends Component {
   state = {
-    name: '',
-    email: '',
-    phone: '',
+    contact: { name: '', email: '', phone: '' },
   };
 
   handleInputChange = (event) => {
-    const name = event.target.name;
+    let contact = { ...this.state.contact };
+    const name = event.target.name; // this name constant can be name, email, or phone
     const value = event.target.value;
-    this.setState({ [name]: value });
+    contact[name] = value;
+    this.setState({ contact });
+  };
+
+  handleSaveContact = (event) => {
+    event.preventDefault();
+    this.props.onSaveContact(this.state.contact);
+    this.setState({ contact: { name: '', email: '', phone: '' } }); // reset the state
   };
 
   render() {
     const { onContactFormClose } = this.props;
 
     return (
-      <div id="contact-form">
+      <div id="contact-form" onSubmit={this.handleSaveContact}>
         <form>
           <fieldset>
             <legend>Create new contact</legend>
             <div className="mb-3">
-              <label for="name" className="form-label">
+              <label htmlFor="name" className="form-label">
                 Name
               </label>
               <input
@@ -36,7 +42,7 @@ class ContactForm extends Component {
               />
             </div>
             <div className="mb-3">
-              <label for="email" className="form-label">
+              <label htmlFor="email" className="form-label">
                 Email
               </label>
               <input
@@ -49,7 +55,7 @@ class ContactForm extends Component {
               />
             </div>
             <div className="mb-3">
-              <label for="phone" className="form-label">
+              <label htmlFor="phone" className="form-label">
                 Phone
               </label>
               <input
@@ -64,9 +70,7 @@ class ContactForm extends Component {
             <button className="btn btn-danger" onClick={onContactFormClose}>
               Cancel
             </button>
-            <button type="submit" className="btn btn-primary">
-              Save
-            </button>
+            <input type="submit" value="Save" className="btn btn-primary" />
           </fieldset>
         </form>
       </div>

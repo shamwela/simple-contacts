@@ -32,6 +32,12 @@ class App extends Component {
     this.setState({ isContactFormOpened });
   };
 
+  handleSaveContact = (contact) => {
+    const contacts = [...this.state.contacts];
+    contacts.push(contact);
+    this.setState({ contacts });
+  };
+
   render() {
     const { isContactFormOpened } = this.state;
     return (
@@ -41,7 +47,10 @@ class App extends Component {
         </Link>
         <CreateContactButton onCreateContact={this.toggleContactForm} />
         {isContactFormOpened && (
-          <ContactForm onContactFormClose={this.toggleContactForm} />
+          <ContactForm
+            onSaveContact={this.handleSaveContact}
+            onContactFormClose={this.toggleContactForm}
+          />
         )}
         <Contacts contacts={this.state.contacts} />
       </div>
