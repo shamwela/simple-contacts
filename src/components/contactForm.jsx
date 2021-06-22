@@ -3,7 +3,7 @@ import './contactForm.css';
 
 class ContactForm extends Component {
   state = {
-    contact: { name: '', email: '', phone: '' },
+    contact: { name: '', emails: [''], phones: [''] },
   };
 
   handleInputChange = (event) => {
@@ -67,10 +67,16 @@ class ContactForm extends Component {
                 onChange={this.handleInputChange}
               />
             </div>
+            <button
+              type="submit"
+              className="btn btn-primary"
+              onClick={onContactFormClose}
+            >
+              Save
+            </button>
             <button className="btn btn-danger" onClick={onContactFormClose}>
               Cancel
             </button>
-            <input type="submit" value="Save" className="btn btn-primary" />
           </fieldset>
         </form>
       </div>

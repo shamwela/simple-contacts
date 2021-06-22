@@ -4,7 +4,7 @@ class CreateContactButton extends Component {
   render() {
     return (
       <button className="btn btn-primary" onClick={this.props.onCreateContact}>
-        Create contact
+        + Create contact
       </button>
     );
   }
