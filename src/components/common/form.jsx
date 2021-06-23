@@ -10,7 +10,7 @@ class Form extends Component {
 
   validate = () => {
     const options = { abortEarly: false };
-    const { error } = Joi.validate(this.state.data, this.schema, options);
+    const { error } = this.schema.validate(this.state.data, options);
     if (!error) return null;
 
     const errors = {};
@@ -20,12 +20,12 @@ class Form extends Component {
     return errors;
   };
 
-  validateProperty = ({ name, value }) => {
-    const obj = { [name]: value };
-    const schema = { [name]: this.schema[name] };
-    const { error } = Joi.validate(obj, schema);
-    return error ? error.details[0].message : null;
-  };
+  // validateProperty = ({ name, value }) => {
+  //   const obj = { [name]: value };
+  //   const schema = Joi.object({ [name]: this.schema[name] });
+  //   const { error } = schema.validate(obj);
+  //   return error ? error.details[0].message : null;
+  // };
 
   handleSubmit = (event) => {
     event.preventDefault();

@@ -1,96 +1,40 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import Joi from 'joi';
+import Form from './common/form';
 import './contactForm.css';
 
-class ContactForm extends Component {
+class ContactForm extends Form {
   state = {
-    contact: {
+    data: {
       id: uuidv4(),
       name: '',
-      emails: [''],
-      phones: [''],
+      email: '',
+      phone: '',
     },
+    errors: {},
   };
 
-  handleSaveContact = (event) => {
-    event.preventDefault();
-    let contact = { ...this.state.contact };
-    console.log('contact', contact);
+  schema = Joi.object({
+    name: Joi.string().max(30).required(),
+    email: Joi.string().email({ tlds: { allow: false } }),
+    phone: Joi.string().max(15),
+  });
 
-    const { name, value } = event.target;
-
-    if (name === 'name') {
-      contact.name = event.target.value;
-    } else {
-      console.log('contact[name]', contact[name]);
-      const lastItem = contact[name].length - 1;
-      contact[name][lastItem] = value;
-    }
-    console.log('contact', contact);
-
-    this.setState({ contact });
-    this.props.onSaveContact(this.state.contact);
-    this.setState({ contact: { name: '', emails: [''], phones: [''] } }); // reset the state
+  doSubmit = () => {
+    // Will call the server here
+    console.log('Submitted');
   };
 
   render() {
-    const { emails, phones } = this.state.contact;
-    const { onContactFormClose } = this.props;
-
     return (
       <div id="contact-form">
-        <form onSubmit={this.handleSaveContact}>
-          <fieldset>
-            <legend>Create new contact</legend>
-            <div className="mb-3">
-              <label htmlFor="name" className="form-label">
-                Name
-              </label>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                className="form-control"
-                required
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="email" className="form-label">
-                Email
-              </label>
-              {emails.map((email) => (
-                <input
-                  key={email}
-                  type="email"
-                  name="emails"
-                  id="email"
-                  className="form-control"
-                  placeholder="Email"
-                />
-              ))}
-            </div>
-            <div className="mb-3">
-              <label htmlFor="phone" className="form-label">
-                Phone
-              </label>
-              <input
-                type="text"
-                name="phones"
-                id="phone"
-                className="form-control"
-                placeholder="Phone"
-              />
-            </div>
-            <input
-              type="submit"
-              value="Save"
-              className="btn btn-primary"
-              onClick={this.handleSaveContact}
-            />
-            <button className="btn btn-danger" onClick={onContactFormClose}>
-              Cancel
-            </button>
-          </fieldset>
+        <form onSubmit={this.handleSubmit}>
+          <h1>Create new contact</h1>
+          {this.renderInput('name', 'Name')}
+          {this.renderInput('email', 'Email')}
+          {this.renderInput('phone', 'Phone')}
+          {this.renderButton('Save')}
         </form>
       </div>
     );

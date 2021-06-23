@@ -12,8 +12,8 @@ class App extends Component {
       {
         id: uuidv4(),
         name: 'Aung',
-        emails: ['aung@email.com'],
-        phones: ['+959111'],
+        email: 'aung@email.com',
+        phone: '+959111',
       },
     ],
     isContactFormOpened: false,
