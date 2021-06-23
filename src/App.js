@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './App.css';
+import { v4 as uuidv4 } from 'uuid';
 import CreateContactButton from './components/createContactButton';
 import ContactForm from './components/contactForm';
 import Contacts from './components/contacts';
+import './App.css';
 
 class App extends Component {
   state = {
     contacts: [
       {
+        id: uuidv4(),
         name: 'Aung',
         emails: ['aung@email.com'],
         phones: ['+959111'],
