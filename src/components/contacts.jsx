@@ -4,7 +4,7 @@ const Contacts = ({ contacts }) => {
   return (
     <div>
       {contacts.map((contact) => (
-        <div>{contact.name}</div>
+        <div key={contact.name}>{contact.name}</div>
       ))}
     </div>
   );

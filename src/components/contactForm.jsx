@@ -6,26 +6,34 @@ class ContactForm extends Component {
     contact: { name: '', emails: [''], phones: [''] },
   };
 
-  handleInputChange = (event) => {
-    let contact = { ...this.state.contact };
-    const name = event.target.name; // this name constant can be name, email, or phone
-    const value = event.target.value;
-    contact[name] = value;
-    this.setState({ contact });
-  };
-
   handleSaveContact = (event) => {
     event.preventDefault();
+    let contact = { ...this.state.contact };
+    console.log('contact', contact);
+
+    const { name, value } = event.target;
+
+    if (name === 'name') {
+      contact.name = event.target.value;
+    } else {
+      console.log('contact[name]', contact[name]);
+      const lastItem = contact[name].length - 1;
+      contact[name][lastItem] = value;
+    }
+    console.log('contact', contact);
+
+    this.setState({ contact });
     this.props.onSaveContact(this.state.contact);
-    this.setState({ contact: { name: '', email: '', phone: '' } }); // reset the state
+    this.setState({ contact: { name: '', emails: [''], phones: [''] } }); // reset the state
   };
 
   render() {
+    const { emails, phones } = this.state.contact;
     const { onContactFormClose } = this.props;
 
     return (
-      <div id="contact-form" onSubmit={this.handleSaveContact}>
-        <form>
+      <div id="contact-form">
+        <form onSubmit={this.handleSaveContact}>
           <fieldset>
             <legend>Create new contact</legend>
             <div className="mb-3">
@@ -37,22 +45,23 @@ class ContactForm extends Component {
                 name="name"
                 id="name"
                 className="form-control"
-                placeholder="Name"
-                onChange={this.handleInputChange}
+                required
               />
             </div>
             <div className="mb-3">
               <label htmlFor="email" className="form-label">
                 Email
               </label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                className="form-control"
-                placeholder="Email"
-                onChange={this.handleInputChange}
-              />
+              {emails.map((email) => (
+                <input
+                  key={email}
+                  type="email"
+                  name="emails"
+                  id="email"
+                  className="form-control"
+                  placeholder="Email"
+                />
+              ))}
             </div>
             <div className="mb-3">
               <label htmlFor="phone" className="form-label">
@@ -60,20 +69,18 @@ class ContactForm extends Component {
               </label>
               <input
                 type="text"
-                name="phone"
+                name="phones"
                 id="phone"
                 className="form-control"
                 placeholder="Phone"
-                onChange={this.handleInputChange}
               />
             </div>
-            <button
+            <input
               type="submit"
+              value="Save"
               className="btn btn-primary"
-              onClick={onContactFormClose}
-            >
-              Save
-            </button>
+              onClick={this.handleSaveContact}
+            />
             <button className="btn btn-danger" onClick={onContactFormClose}>
               Cancel
             </button>
