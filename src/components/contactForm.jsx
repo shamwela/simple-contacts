@@ -41,12 +41,17 @@ class ContactForm extends Component {
     this.setState({ contact });
   };
 
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.onSaveContact(this.state.contact);
+  };
+
   render() {
     const { name, emails, phones } = this.state.contact;
 
     return (
       <div id="contact-form">
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <h1>Create new contact</h1>
           <div className="form-group">
             <label htmlFor="name">Name</label>
@@ -64,7 +69,6 @@ class ContactForm extends Component {
             {emails.map((email, index) => (
               <div key={index} className="d-flex">
                 <input
-                  key={index}
                   value={email}
                   onChange={(e) => this.handleChange(e, index)}
                   name="emails"
@@ -94,7 +98,6 @@ class ContactForm extends Component {
             {phones.map((phone, index) => (
               <div key={index} className="d-flex">
                 <input
-                  key={index}
                   value={phone}
                   onChange={(e) => this.handleChange(e, index)}
                   name="phones"
@@ -116,10 +119,12 @@ class ContactForm extends Component {
               name="phones"
               className="btn btn-primary"
             >
-              + Add email
+              + Add phone
             </button>
           </div>
-
+          <button type="submit" className="btn btn-primary">
+            Save
+          </button>
           <button
             onClick={this.props.onContactFormClose}
             className="btn btn-secondary"
