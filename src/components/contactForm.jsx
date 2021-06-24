@@ -1,40 +1,131 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import Joi from 'joi';
-import Form from './common/form';
 import './contactForm.css';
 
-class ContactForm extends Form {
+class ContactForm extends Component {
   state = {
-    data: {
+    contact: {
       id: uuidv4(),
       name: '',
-      email: '',
-      phone: '',
+      emails: [''],
+      phones: [''],
     },
-    errors: {},
   };
 
-  schema = Joi.object({
-    name: Joi.string().max(30).required(),
-    email: Joi.string().email({ tlds: { allow: false } }),
-    phone: Joi.string().max(15),
-  });
+  handleChange = (e, index) => {
+    const contact = { ...this.state.contact };
+    const { name, value } = e.target;
+    // for name
+    if (name === 'name') {
+      contact.name = value;
+    } else {
+      // for emails and phones
+      contact[name][index] = value;
+    }
+    this.setState({ contact });
+  };
 
-  doSubmit = () => {
-    // Will call the server here
-    console.log('Submitted');
+  handleInputDelete = (e, index) => {
+    e.preventDefault();
+    const contact = { ...this.state.contact };
+    const { name } = e.target;
+    contact[name].splice(index, 1);
+    this.setState({ contact });
+  };
+
+  handleAddNewInput = (e) => {
+    e.preventDefault();
+    const contact = { ...this.state.contact };
+    const { name } = e.target;
+    contact[name].push(' ');
+    this.setState({ contact });
   };
 
   render() {
+    const { name, emails, phones } = this.state.contact;
+
     return (
       <div id="contact-form">
-        <form onSubmit={this.handleSubmit}>
+        <form>
           <h1>Create new contact</h1>
-          {this.renderInput('name', 'Name')}
-          {this.renderInput('email', 'Email')}
-          {this.renderInput('phone', 'Phone')}
-          {this.renderButton('Save')}
+          <div className="form-group">
+            <label htmlFor="name">Name</label>
+            <input
+              value={name}
+              onChange={this.handleChange}
+              name="name"
+              id="name"
+              type="text"
+              className="form-control mb-2"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="emails">Email</label>
+            {emails.map((email, index) => (
+              <div key={index} className="d-flex">
+                <input
+                  key={index}
+                  value={email}
+                  onChange={(e) => this.handleChange(e, index)}
+                  name="emails"
+                  id="emails"
+                  type="email"
+                  className="form-control mb-2"
+                />
+                <button
+                  onClick={(e) => this.handleInputDelete(e, index)}
+                  name="emails"
+                  className="btn btn-danger"
+                >
+                  Delete
+                </button>
+              </div>
+            ))}
+            <button
+              onClick={this.handleAddNewInput}
+              name="emails"
+              className="btn btn-primary"
+            >
+              + Add email
+            </button>
+          </div>
+          <div className="form-group">
+            <label htmlFor="phones">Phone</label>
+            {phones.map((phone, index) => (
+              <div key={index} className="d-flex">
+                <input
+                  key={index}
+                  value={phone}
+                  onChange={(e) => this.handleChange(e, index)}
+                  name="phones"
+                  id="phones"
+                  type="phone"
+                  className="form-control mb-2"
+                />
+                <button
+                  onClick={(e) => this.handleInputDelete(e, index)}
+                  name="phones"
+                  className="btn btn-danger"
+                >
+                  Delete
+                </button>
+              </div>
+            ))}
+            <button
+              onClick={this.handleAddNewInput}
+              name="phones"
+              className="btn btn-primary"
+            >
+              + Add email
+            </button>
+          </div>
+
+          <button
+            onClick={this.props.onContactFormClose}
+            className="btn btn-secondary"
+          >
+            Close
+          </button>
         </form>
       </div>
     );
