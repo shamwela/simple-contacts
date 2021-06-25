@@ -95,12 +95,12 @@ class Form extends Component {
     );
   };
 
-  renderMultipleInput = (nestedData, name, label, type = 'text') => {
+  renderMultipleInput = (name, label, type = 'text') => {
     const { data, errors } = this.state;
 
     return (
       <MultipleInput
-        nestedData={nestedData}
+        nestedData={data[name]}
         type={type}
         name={name}
         label={label}

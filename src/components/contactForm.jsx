@@ -31,15 +31,13 @@ class ContactForm extends Form {
   });
 
   render() {
-    const { name, emails, phones } = this.state.data;
-
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
           <h1>Create new data</h1>
           {this.renderSingleInput('name', 'Name (Required)')}
-          {this.renderMultipleInput(emails, 'emails', 'Emails', 'email')}
-          {this.renderMultipleInput(phones, 'phones', 'Phones', 'tel')}
+          {this.renderMultipleInput('emails', 'Emails', 'email')}
+          {this.renderMultipleInput('phones', 'Phones', 'tel')}
           <button type="submit" className="btn btn-primary">
             Save
           </button>
