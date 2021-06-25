@@ -19,7 +19,8 @@ class App extends Component {
     isContactFormOpened: false,
   };
 
-  toggleContactForm = () => {
+  toggleContactForm = (e) => {
+    e.preventDefault();
     const isContactFormOpened = !this.state.isContactFormOpened;
     this.setState({ isContactFormOpened });
   };

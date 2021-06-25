@@ -111,6 +111,21 @@ class Form extends Component {
       />
     );
   };
+
+  renderSubmitButton = (label = 'Submit') => (
+    <button type="submit" className="btn btn-primary">
+      {label}
+    </button>
+  );
+
+  renderCancelButton = (label = 'Cancel') => (
+    <button
+      onClick={this.props.onContactFormClose}
+      className="btn btn-secondary"
+    >
+      {label}
+    </button>
+  );
 }
 
 export default Form;

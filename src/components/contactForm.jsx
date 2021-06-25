@@ -38,15 +38,8 @@ class ContactForm extends Form {
           {this.renderSingleInput('name', 'Name (Required)')}
           {this.renderMultipleInput('emails', 'Emails', 'email')}
           {this.renderMultipleInput('phones', 'Phones', 'tel')}
-          <button type="submit" className="btn btn-primary">
-            Save
-          </button>
-          <button
-            onClick={this.props.onContactFormClose}
-            className="btn btn-secondary"
-          >
-            Cancel
-          </button>
+          {this.renderSubmitButton('Save')}
+          {this.renderCancelButton()}
         </form>
       </div>
     );
