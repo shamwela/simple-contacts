@@ -16,14 +16,16 @@ class ContactForm extends Form {
 
   schema = Joi.object({
     id: Joi.string().required(),
-    name: Joi.string().max(70).required(),
-    emails: Joi.array().items(
-      Joi.string()
-        .email({ tlds: { allow: false } }) // allow email with any top level domain
-        .min(5)
-        .max(320)
-    ),
-    phones: Joi.array().items(Joi.string().max(20)),
+    name: Joi.string().max(70).required().label('Name'),
+    emails: Joi.array()
+      .items(
+        Joi.string()
+          .email({ tlds: { allow: false } }) // allow email with any top level domain
+          .min(5)
+          .max(320)
+      )
+      .label('Emails'),
+    phones: Joi.array().items(Joi.string().max(20)).label('Phones'),
   });
 
   render() {

@@ -14,8 +14,8 @@ const MultipleInput = ({
     <div className="form-group">
       <label htmlFor={name}>{label}</label>
       {nestedData.map((value, index) => (
-        <>
-          <div key={index} className="d-flex">
+        <div key={index}>
+          <div className="d-flex">
             <input
               value={value}
               onChange={(e) => onChange(e, index)}
@@ -33,7 +33,7 @@ const MultipleInput = ({
             </button>
           </div>
           {error && <div className="d-block alert alert-danger">{error}</div>}
-        </>
+        </div>
       ))}
       <button onClick={onAddNewInput} name={name} className="btn btn-primary">
         + Add email
