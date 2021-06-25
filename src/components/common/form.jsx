@@ -10,15 +10,23 @@ class Form extends Component {
     errors: {},
   };
 
+  // FIX THIS LATER!!!
+  // FIX THIS LATER!!!
+  // FIX THIS LATER!!!
   validateForm = () => {
     const options = { abortEarly: false };
-    const { error } = this.schema.validate(this.state.data, options);
-    if (!error) return null;
+    const result = this.schema.validate(this.state.data, options);
+    console.log('result', result);
+
+    if (!result.error) return null;
 
     const errors = {};
-    for (let item of error.details) errors[item.path[0]] = item.message;
+    for (let item of result.error.details) errors[item.path[0]] = item.message;
     return errors;
   };
+  // FIX THIS LATER!!!
+  // FIX THIS LATER!!!
+  // FIX THIS LATER!!!
 
   handleChange = (e, index) => {
     const data = { ...this.state.data };
