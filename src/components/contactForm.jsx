@@ -26,7 +26,7 @@ class ContactForm extends Form {
         .label('Email')
     ),
     phones: Joi.array().items(
-      Joi.string().allow(null, '').min(2).max(20).label('Phone')
+      Joi.string().allow(null, '').max(20).label('Phone')
     ),
   });
 

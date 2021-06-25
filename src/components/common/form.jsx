@@ -10,13 +10,26 @@ class Form extends Component {
     errors: {},
   };
 
-  // FIX THIS LATER!!!
-  // FIX THIS LATER!!!
-  // FIX THIS LATER!!!
+  validateField = ({ name, value }) => {
+    const schemaForField = Joi.object({ [name]: this.schema.extract(name) });
+    // for example => {name: Joi.string().label('Name')}
+
+    let fieldToValidate = {};
+    if (name === 'name') {
+      fieldToValidate = { [name]: value }; // for example => {name: 'John Smith'}
+    } else {
+      fieldToValidate = { [name]: [value] }; // for example => {emails: ['john@gmail.com']}
+    }
+
+    const { error } = schemaForField.validate(fieldToValidate);
+    console.log(error);
+    return error ? error.details[0].message : null;
+  };
+
   validateForm = () => {
     const options = { abortEarly: false };
     const result = this.schema.validate(this.state.data, options);
-    console.log('result', result);
+    // console.log('result', result);
 
     if (!result.error) return null;
 
@@ -24,13 +37,15 @@ class Form extends Component {
     for (let item of result.error.details) errors[item.path[0]] = item.message;
     return errors;
   };
-  // FIX THIS LATER!!!
-  // FIX THIS LATER!!!
-  // FIX THIS LATER!!!
 
-  handleChange = (e, index) => {
+  handleChange = ({ currentTarget: input }, index) => {
+    const errors = { ...this.state.errors };
+    const errorMessage = this.validateField(input);
+    if (errorMessage) errors[input.name] = errorMessage;
+    else delete errors[input.name];
+
     const data = { ...this.state.data };
-    const { name, value } = e.target;
+    const { name, value } = input;
     // for name
     if (typeof data[name] === 'string') {
       data.name = value;
@@ -38,7 +53,7 @@ class Form extends Component {
       // for emails and phones
       data[name][index] = value;
     }
-    this.setState({ data });
+    this.setState({ data, errors });
   };
 
   handleInputDelete = (e, index) => {

@@ -36,7 +36,7 @@ const MultipleInput = ({
         </div>
       ))}
       <button onClick={onAddNewInput} name={name} className="btn btn-primary">
-        + Add email
+        + Add {name}
       </button>
     </div>
   );
