@@ -100,7 +100,7 @@ class Form extends Component {
 
     return (
       <MultipleInput
-        nestedData={data[name]}
+        arrayData={data[name]}
         type={type}
         name={name}
         label={label}

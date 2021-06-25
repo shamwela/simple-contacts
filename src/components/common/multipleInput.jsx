@@ -1,7 +1,7 @@
 import React from 'react';
 
 const MultipleInput = ({
-  nestedData,
+  arrayData,
   name,
   label,
   type,
@@ -13,7 +13,7 @@ const MultipleInput = ({
   return (
     <div className="form-group">
       <label htmlFor={name}>{label}</label>
-      {nestedData.map((value, index) => (
+      {arrayData.map((value, index) => (
         <div key={index}>
           <div className="d-flex">
             <input
