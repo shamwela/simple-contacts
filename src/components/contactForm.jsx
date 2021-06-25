@@ -130,7 +130,7 @@ class ContactForm extends Component {
             onClick={this.props.onContactFormClose}
             className="btn btn-secondary"
           >
-            Close
+            Cancel
           </button>
         </form>
       </div>
