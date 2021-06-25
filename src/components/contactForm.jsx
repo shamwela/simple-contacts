@@ -16,7 +16,7 @@ class ContactForm extends Component {
     const contact = { ...this.state.contact };
     const { name, value } = e.target;
     // for name
-    if (name === 'name') {
+    if (typeof contact[name] === 'string') {
       contact.name = value;
     } else {
       // for emails and phones
@@ -62,6 +62,7 @@ class ContactForm extends Component {
               id="name"
               type="text"
               className="form-control mb-2"
+              autoFocus
             />
           </div>
           <div className="form-group">
