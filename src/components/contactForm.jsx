@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import Joi from 'joi';
 import './contactForm.css';
 
 class ContactForm extends Component {
@@ -11,6 +12,18 @@ class ContactForm extends Component {
       phones: [''],
     },
   };
+
+  schema = Joi.object({
+    id: Joi.string().required(),
+    name: Joi.string().max(70).required(),
+    emails: Joi.array().items(
+      Joi.string()
+        .email({ tlds: { allow: false } }) // allow email with any top level domain
+        .min(5)
+        .max(320)
+    ),
+    phones: Joi.array().items(Joi.string().max(20)),
+  });
 
   handleChange = (e, index) => {
     const contact = { ...this.state.contact };
@@ -28,7 +41,7 @@ class ContactForm extends Component {
   handleInputDelete = (e, index) => {
     e.preventDefault();
     const contact = { ...this.state.contact };
-    const { name } = e.target;
+    const name = e.target.name;
     contact[name].splice(index, 1);
     this.setState({ contact });
   };
@@ -36,7 +49,7 @@ class ContactForm extends Component {
   handleAddNewInput = (e) => {
     e.preventDefault();
     const contact = { ...this.state.contact };
-    const { name } = e.target;
+    const name = e.target.name;
     contact[name].push(' ');
     this.setState({ contact });
   };
@@ -54,7 +67,7 @@ class ContactForm extends Component {
         <form onSubmit={this.handleSubmit}>
           <h1>Create new contact</h1>
           <div className="form-group">
-            <label htmlFor="name">Name</label>
+            <label htmlFor="name">Name (Required)</label>
             <input
               value={name}
               onChange={this.handleChange}
@@ -103,7 +116,7 @@ class ContactForm extends Component {
                   onChange={(e) => this.handleChange(e, index)}
                   name="phones"
                   id="phones"
-                  type="phone"
+                  type="tel"
                   className="form-control mb-2"
                 />
                 <button
