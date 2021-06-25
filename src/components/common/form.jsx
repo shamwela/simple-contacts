@@ -22,7 +22,6 @@ class Form extends Component {
     }
 
     const { error } = schemaForField.validate(fieldToValidate);
-    console.log(error);
     return error ? error.details[0].message : null;
   };
 
@@ -113,7 +112,11 @@ class Form extends Component {
   };
 
   renderSubmitButton = (label = 'Submit') => (
-    <button type="submit" className="btn btn-primary">
+    <button
+      disabled={this.validateForm()}
+      type="submit"
+      className="btn btn-primary"
+    >
       {label}
     </button>
   );
