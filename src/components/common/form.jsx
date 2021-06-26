@@ -109,22 +109,22 @@ class Form extends Component {
     );
   };
 
-  renderSubmitButton = (label = 'Submit') => (
+  renderSubmitButton = () => (
     <button
       disabled={this.validateForm()}
       type="submit"
       className="btn btn-primary"
     >
-      {label}
+      Save
     </button>
   );
 
-  renderCancelButton = (label = 'Cancel') => (
+  renderCancelButton = () => (
     <button
       onClick={this.props.onContactFormClose}
       className="btn btn-secondary"
     >
-      {label}
+      Cancel
     </button>
   );
 }

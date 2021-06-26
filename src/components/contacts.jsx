@@ -3,8 +3,8 @@ import React from 'react';
 const Contacts = ({ contacts, onOpen }) => {
   return (
     <div>
-      {contacts.map((contact) => (
-        <div key={contact.id} onClick={() => onOpen(contact)}>
+      {contacts.map((contact, index) => (
+        <div key={index} onClick={() => onOpen(contact)}>
           {contact.name}
         </div>
       ))}
