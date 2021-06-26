@@ -10,6 +10,22 @@ class Form extends Component {
     errors: {},
   };
 
+  schema = Joi.object({
+    id: Joi.string().required(),
+    name: Joi.string().max(70).required().label('Name'),
+    emails: Joi.array().items(
+      Joi.string()
+        .allow(null, '')
+        .email({ tlds: { allow: false } }) // allow emails with any top level domain
+        .min(4)
+        .max(320)
+        .label('Email')
+    ),
+    phones: Joi.array().items(
+      Joi.string().allow(null, '').max(20).label('Phone')
+    ),
+  });
+
   validateField = ({ name, value }) => {
     const schemaForField = Joi.object({ [name]: this.schema.extract(name) });
     // for example => {name: Joi.string().label('Name')}
