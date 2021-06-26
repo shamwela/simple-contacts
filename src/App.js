@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import CreateContactButton from './components/createContactButton';
-import ContactForm from './components/contactForm';
+import CreateContactForm from './components/createContactForm';
 import Contacts from './components/contacts';
 import './App.css';
 
@@ -16,34 +16,34 @@ class App extends Component {
         phones: ['+959111'],
       },
     ],
-    isContactFormOpened: false,
+    isCreateContactFormOpened: false,
   };
 
-  toggleContactForm = (e) => {
+  toggleCreateContactForm = (e) => {
     e.preventDefault();
-    const isContactFormOpened = !this.state.isContactFormOpened;
-    this.setState({ isContactFormOpened });
+    const isCreateContactFormOpened = !this.state.isCreateContactFormOpened;
+    this.setState({ isCreateContactFormOpened });
   };
 
   handleSaveContact = (contact) => {
     const contacts = [...this.state.contacts];
     contacts.push(contact);
-    this.toggleContactForm();
+    this.toggleCreateContactForm();
     this.setState({ contacts });
   };
 
   render() {
-    const { isContactFormOpened } = this.state;
+    const { isCreateContactFormOpened: isContactFormOpened } = this.state;
     return (
       <div id="app">
         <Link to="/">
           <h1>Simple Contacts</h1>
         </Link>
-        <CreateContactButton onCreateContact={this.toggleContactForm} />
+        <CreateContactButton onCreateContact={this.toggleCreateContactForm} />
         {isContactFormOpened && (
-          <ContactForm
+          <CreateContactForm
             onSaveContact={(contact) => this.handleSaveContact(contact)}
-            onContactFormClose={this.toggleContactForm}
+            onContactFormClose={this.toggleCreateContactForm}
           />
         )}
         <Contacts contacts={this.state.contacts} />

@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import Joi from 'joi';
 import Form from './common/form';
 
-class ContactForm extends Form {
+class CreateContactForm extends Form {
   state = {
     data: {
       id: uuidv4(),
@@ -46,4 +46,4 @@ class ContactForm extends Form {
   }
 }
 
-export default ContactForm;
+export default CreateContactForm;
