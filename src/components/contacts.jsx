@@ -1,10 +1,12 @@
 import React from 'react';
 
-const Contacts = ({ contacts }) => {
+const Contacts = ({ contacts, onOpen }) => {
   return (
     <div>
       {contacts.map((contact) => (
-        <div key={contact.name}>{contact.name}</div>
+        <div key={contact.id} onClick={() => onOpen(contact)}>
+          {contact.name}
+        </div>
       ))}
     </div>
   );

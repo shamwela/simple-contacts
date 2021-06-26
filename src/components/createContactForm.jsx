@@ -33,7 +33,7 @@ class CreateContactForm extends Form {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} className="popup">
           <h1>Create new data</h1>
           {this.renderSingleInput('name', 'Name (Required)')}
           {this.renderMultipleInput('emails', 'Emails', 'email')}
