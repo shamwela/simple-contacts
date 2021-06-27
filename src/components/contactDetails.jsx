@@ -7,12 +7,10 @@ class ContactDetails extends Component {
     isEditContactFormOpened: false,
   };
 
-  hasValues = (obj) => {
-    let hasValues = true;
-    if (obj.emails[0] === '' && obj.phones[0] === '') {
-      hasValues = false;
-    }
-    return hasValues;
+  hasValues = ({ emails, phones }) => {
+    const isEmailsEmpty = emails.every((email) => email === '');
+    const isPhonesEmpty = phones.every((phone) => phone === '');
+    return !isEmailsEmpty && !isPhonesEmpty;
   };
 
   handleEditContactFormClose = () => {
