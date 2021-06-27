@@ -16,8 +16,12 @@ class ContactDetails extends Component {
   };
 
   render() {
-    const { onContactDetailsClose, onSaveContact, onContactFormClose } =
-      this.props;
+    const {
+      onContactDetailsClose,
+      onSaveContact,
+      onDeleteContact,
+      onContactFormClose,
+    } = this.props;
     const { contact, isEditContactFormOpened } = this.state;
     const { name, emails, phones } = contact;
 
@@ -66,10 +70,18 @@ class ContactDetails extends Component {
             Edit
           </button>
 
+          <button
+            onClick={() => onDeleteContact(contact)}
+            className="btn btn-danger"
+          >
+            Delete
+          </button>
+
           <button onClick={onContactDetailsClose} className="btn btn-secondary">
             Close
           </button>
         </div>
+
         {isEditContactFormOpened && (
           <EditContactForm
             contact={contact}
@@ -78,7 +90,7 @@ class ContactDetails extends Component {
                 contact: contact,
                 isEditContactFormOpened: false,
               });
-              this.props.onSaveContact(contact);
+              onSaveContact(contact);
             }}
             onContactFormClose={onContactFormClose}
           />

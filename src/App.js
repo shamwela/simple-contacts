@@ -46,6 +46,12 @@ class App extends Component {
     this.setState({ contacts, isCreateContactFormOpened: false });
   };
 
+  handleDeleteContact = (contact) => {
+    let contacts = [...this.state.contacts];
+    contacts = contacts.filter((item) => item.id !== contact.id);
+    this.setState({ contacts, isContactDetailsOpened: false });
+  };
+
   handleOpenContactDetails = (contact) => {
     this.setState({ isContactDetailsOpened: true, openedContact: contact });
   };
@@ -85,6 +91,7 @@ class App extends Component {
         {isContactDetailsOpened && (
           <ContactDetails
             contact={openedContact}
+            onDeleteContact={this.handleDeleteContact}
             onContactDetailsClose={() =>
               this.setState({ isContactDetailsOpened: false })
             }
