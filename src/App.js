@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import _ from 'lodash';
+import Search from './components/common/search';
 import CreateContactButton from './components/createContactButton';
 import CreateContactForm from './components/createContactForm';
 import ContactDetails from './components/contactDetails';
@@ -11,14 +13,14 @@ class App extends Component {
     contacts: [
       {
         id: uuidv4(),
-        name: 'Alex',
-        emails: ['alex@gmail.com'],
+        name: 'Bob',
+        emails: ['bob@gmail.com'],
         phones: ['123'],
       },
       {
         id: uuidv4(),
-        name: 'Bob',
-        emails: ['bob@gmail.com'],
+        name: 'Alex',
+        emails: ['alex@gmail.com'],
         phones: ['123'],
       },
       {
@@ -28,9 +30,14 @@ class App extends Component {
         phones: [''],
       },
     ],
+    search: '',
     openedContact: {},
     isCreateContactFormOpened: false,
     isContactDetailsOpened: false,
+  };
+
+  handleSearch = (search) => {
+    this.setState({ search });
   };
 
   handleSaveContact = (contact) => {
@@ -63,15 +70,31 @@ class App extends Component {
 
   render() {
     const {
-      contacts,
+      contacts: allContacts,
+      search,
+      openedContact,
       isCreateContactFormOpened,
       isContactDetailsOpened,
-      openedContact,
     } = this.state;
+
+    const sortedContacts = _.sortBy(allContacts, [
+      (contact) => contact.name.toLocaleLowerCase(),
+    ]);
+
+    let contacts = sortedContacts;
+    if (search) {
+      contacts = sortedContacts.filter((contact) =>
+        contact.name.toLowerCase().includes(search.toLowerCase())
+      );
+    } else {
+      contacts = sortedContacts;
+    }
 
     return (
       <div id="app">
         <h1 id="app-title">Simple Contacts</h1>
+
+        <Search search={search} onSearch={this.handleSearch} />
 
         <CreateContactButton
           onCreateContact={() =>
