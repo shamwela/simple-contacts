@@ -1,0 +1,13 @@
+#create-contact-button {
+  position: absolute;
+  margin: 0;
+  right: 1.5rem;
+  bottom: 1.5rem;
+}
+
+@media only screen and (min-width: 1024px) {
+  #create-contact-button {
+    position: static;
+    margin-bottom: 2rem;
+  }
+}

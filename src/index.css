@@ -79,6 +79,10 @@ a:focus {
   text-decoration: underline;
 }
 
+button {
+  max-width: max-content;
+}
+
 .popup {
   background: var(--dominant-color);
   width: 100%;

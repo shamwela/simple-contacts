@@ -1,14 +1,11 @@
 import React from 'react';
+import './contacts.css';
 
 const Contacts = ({ contacts, onOpen }) => {
   return (
-    <div>
+    <div id="contacts">
       {contacts.map((contact, index) => (
-        <div
-          key={index}
-          onClick={() => onOpen(contact)}
-          style={{ cursor: 'pointer' }}
-        >
+        <div key={index} onClick={() => onOpen(contact)} class="contact">
           {contact.name}
         </div>
       ))}

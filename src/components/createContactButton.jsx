@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
+import './createContactButton.css';
 
 class CreateContactButton extends Component {
   render() {
     return (
-      <button className="btn btn-primary" onClick={this.props.onCreateContact}>
+      <button
+        id="create-contact-button"
+        className="btn btn-primary"
+        onClick={this.props.onCreateContact}
+      >
         + Create contact
       </button>
     );
