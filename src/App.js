@@ -14,17 +14,17 @@ class App extends Component {
         id: uuidv4(),
         name: 'Alex',
         emails: ['alex@gmail.com'],
-        phones: ['+123'],
+        phones: ['123'],
       },
       {
         id: uuidv4(),
         name: 'Bob',
         emails: ['bob@gmail.com'],
-        phones: ['+123'],
+        phones: ['123'],
       },
       {
         id: uuidv4(),
-        name: 'Null Contact',
+        name: 'Empty Contact',
         emails: [''],
         phones: [''],
       },
@@ -72,9 +72,7 @@ class App extends Component {
 
     return (
       <div id="app">
-        <Link to="/">
-          <h1>Simple Contacts</h1>
-        </Link>
+        <h1 id="app-title">Simple Contacts</h1>
 
         <CreateContactButton
           onCreateContact={() =>
