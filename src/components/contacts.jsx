@@ -5,7 +5,7 @@ const Contacts = ({ contacts, onOpen }) => {
   return (
     <div id="contacts">
       {contacts.map((contact, index) => (
-        <div key={index} onClick={() => onOpen(contact)} class="contact">
+        <div key={index} onClick={() => onOpen(contact)} className="contact">
           {contact.name}
         </div>
       ))}
