@@ -36,10 +36,13 @@ class App extends Component {
 
   handleSaveContact = (contact) => {
     let contacts = [...this.state.contacts];
+
+    // delete the old contact if it already exists
     contacts = contacts.filter((item) => item.id !== contact.id);
-    console.log('contacts', contacts);
+
+    // add the new contact to the contacts
     contacts.push(contact);
-    console.log('contacts', contacts);
+
     this.setState({ contacts, isCreateContactFormOpened: false });
   };
 
