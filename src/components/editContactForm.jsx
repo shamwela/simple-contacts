@@ -1,5 +1,4 @@
 import React from 'react';
-import Joi from 'joi';
 import Form from './common/form';
 
 class EditContactForm extends Form {

@@ -24,12 +24,6 @@ class App extends Component {
       },
       {
         id: uuidv4(),
-        name: 'Cat',
-        emails: ['cat@gmail.com'],
-        phones: ['+123'],
-      },
-      {
-        id: uuidv4(),
         name: 'Null Contact',
         emails: [''],
         phones: [''],
@@ -41,8 +35,11 @@ class App extends Component {
   };
 
   handleSaveContact = (contact) => {
-    const contacts = [...this.state.contacts];
+    let contacts = [...this.state.contacts];
+    contacts = contacts.filter((item) => item.id !== contact.id);
+    console.log('contacts', contacts);
     contacts.push(contact);
+    console.log('contacts', contacts);
     this.setState({ contacts, isCreateContactFormOpened: false });
   };
 
@@ -51,8 +48,12 @@ class App extends Component {
   };
 
   render() {
-    const { isCreateContactFormOpened, isContactDetailsOpened, openedContact } =
-      this.state;
+    const {
+      contacts,
+      isCreateContactFormOpened,
+      isContactDetailsOpened,
+      openedContact,
+    } = this.state;
 
     return (
       <div id="app">
@@ -75,13 +76,15 @@ class App extends Component {
         )}
 
         <Contacts
-          contacts={this.state.contacts}
+          contacts={contacts}
           onOpen={(contact) => this.handleOpenContactDetails(contact)}
         />
         {isContactDetailsOpened && (
           <ContactDetails
             contact={openedContact}
-            onClose={() => this.setState({ isContactDetailsOpened: false })}
+            onContactDetailsClose={() =>
+              this.setState({ isContactDetailsOpened: false })
+            }
             onSaveContact={(contact) => this.handleSaveContact(contact)}
             onContactFormClose={() =>
               this.setState({ isCreateContactFormOpened: false })

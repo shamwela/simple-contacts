@@ -1,6 +1,5 @@
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import Joi from 'joi';
 import Form from './common/form';
 
 class CreateContactForm extends Form {

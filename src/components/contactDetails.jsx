@@ -3,6 +3,7 @@ import EditContactForm from './editContactForm';
 
 class ContactDetails extends Component {
   state = {
+    contact: this.props.contact,
     isEditContactFormOpened: false,
   };
 
@@ -15,9 +16,10 @@ class ContactDetails extends Component {
   };
 
   render() {
-    const { contact, onClose, onSaveContact, onContactFormClose } = this.props;
+    const { onContactDetailsClose, onSaveContact, onContactFormClose } =
+      this.props;
+    const { contact, isEditContactFormOpened } = this.state;
     const { name, emails, phones } = contact;
-    const { isEditContactFormOpened } = this.state;
 
     return (
       <>
@@ -64,17 +66,20 @@ class ContactDetails extends Component {
             Edit
           </button>
 
-          <button onClick={onClose} className="btn btn-secondary">
+          <button onClick={onContactDetailsClose} className="btn btn-secondary">
             Close
           </button>
         </div>
         {isEditContactFormOpened && (
           <EditContactForm
             contact={contact}
-            onSaveContact={
-              (onSaveContact,
-              () => this.setState({ isEditContactFormOpened: false }))
-            }
+            onSaveContact={(contact) => {
+              this.setState({
+                contact: contact,
+                isEditContactFormOpened: false,
+              });
+              this.props.onSaveContact(contact);
+            }}
             onContactFormClose={onContactFormClose}
           />
         )}
