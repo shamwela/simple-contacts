@@ -29,9 +29,9 @@ class App extends Component {
         phones: [''],
       },
     ],
+    openedContact: {},
     isCreateContactFormOpened: false,
     isContactDetailsOpened: false,
-    openedContact: {},
   };
 
   handleSaveContact = (contact) => {
@@ -44,16 +44,22 @@ class App extends Component {
     contacts.push(contact);
 
     this.setState({ contacts, isCreateContactFormOpened: false });
+
+    this.handleOpenContactDetails(contact);
+  };
+
+  handleContactFormClose = () => {
+    this.setState({ isCreateContactFormOpened: false });
+  };
+
+  handleOpenContactDetails = (contact) => {
+    this.setState({ openedContact: contact, isContactDetailsOpened: true });
   };
 
   handleDeleteContact = (contact) => {
     let contacts = [...this.state.contacts];
     contacts = contacts.filter((item) => item.id !== contact.id);
     this.setState({ contacts, isContactDetailsOpened: false });
-  };
-
-  handleOpenContactDetails = (contact) => {
-    this.setState({ isContactDetailsOpened: true, openedContact: contact });
   };
 
   render() {
@@ -78,9 +84,7 @@ class App extends Component {
         {isCreateContactFormOpened && (
           <CreateContactForm
             onSaveContact={(contact) => this.handleSaveContact(contact)}
-            onContactFormClose={() =>
-              this.setState({ isCreateContactFormOpened: false })
-            }
+            onContactFormClose={this.handleContactFormClose}
           />
         )}
 
@@ -88,6 +92,7 @@ class App extends Component {
           contacts={contacts}
           onOpen={(contact) => this.handleOpenContactDetails(contact)}
         />
+
         {isContactDetailsOpened && (
           <ContactDetails
             contact={openedContact}
@@ -96,9 +101,7 @@ class App extends Component {
               this.setState({ isContactDetailsOpened: false })
             }
             onSaveContact={(contact) => this.handleSaveContact(contact)}
-            onContactFormClose={() =>
-              this.setState({ isCreateContactFormOpened: false })
-            }
+            onContactFormClose={this.handleContactFormClose}
           />
         )}
       </div>

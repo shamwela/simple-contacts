@@ -137,7 +137,7 @@ class Form extends Component {
 
   renderCancelButton = () => (
     <button
-      onClick={this.props.onContactFormClose}
+      onClick={(e) => this.props.onContactFormClose(e.preventDefault())}
       className="btn btn-secondary"
     >
       Cancel

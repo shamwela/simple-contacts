@@ -15,13 +15,23 @@ class ContactDetails extends Component {
     return hasValues;
   };
 
+  handleEditContactFormClose = () => {
+    this.setState({ isEditContactFormOpened: false });
+  };
+
+  handleSaveContact = (contact) => {
+    this.handleEditContactFormClose();
+    this.setState({ contact: contact });
+    this.props.onSaveContact(contact);
+  };
+
+  handleContactFormClose = () => {
+    this.handleEditContactFormClose();
+    this.props.onContactFormClose();
+  };
+
   render() {
-    const {
-      onContactDetailsClose,
-      onSaveContact,
-      onDeleteContact,
-      onContactFormClose,
-    } = this.props;
+    const { onDeleteContact, onContactDetailsClose } = this.props;
     const { contact, isEditContactFormOpened } = this.state;
     const { name, emails, phones } = contact;
 
@@ -85,14 +95,8 @@ class ContactDetails extends Component {
         {isEditContactFormOpened && (
           <EditContactForm
             contact={contact}
-            onSaveContact={(contact) => {
-              this.setState({
-                contact: contact,
-                isEditContactFormOpened: false,
-              });
-              onSaveContact(contact);
-            }}
-            onContactFormClose={onContactFormClose}
+            onSaveContact={this.handleSaveContact}
+            onContactFormClose={this.handleContactFormClose}
           />
         )}
       </>
