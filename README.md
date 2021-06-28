@@ -1,4 +1,4 @@
-# simple-contacts
+# Simple Contacts
 
 A simple contacts app built with React.
 
