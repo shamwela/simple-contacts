@@ -35,7 +35,7 @@ class ContactDetails extends Component {
 
     return (
       <>
-        <div className="popup d-flex flex-column">
+        <div className="popup">
           <h1>{name}</h1>
 
           {!this.hasContactDetails(contact) && (

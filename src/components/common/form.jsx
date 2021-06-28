@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Joi from 'joi';
 import SingleInput from './singleInput';
 import MultipleInput from './multipleInput';
-import './form.css';
 
 class Form extends Component {
   state = {
