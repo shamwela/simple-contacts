@@ -93,6 +93,17 @@ button {
   display: flex;
   flex-direction: column;
   row-gap: 3vh;
+  animation: popup 0.2s;
+}
+
+@keyframes popup {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
 @media only screen and (min-width: 1024px) {
