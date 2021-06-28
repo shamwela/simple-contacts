@@ -42,9 +42,9 @@ p {
 }
 
 h1 {
-  --fluid-type-min: 2.5rem;
+  --fluid-type-min: 2rem;
   --fluid-type-target: 5vw;
-  --fluid-type-max: 5rem;
+  --fluid-type-max: 4rem;
   max-width: 15ch;
 }
 
