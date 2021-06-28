@@ -17,7 +17,7 @@ class CreateContactForm extends Form {
     return (
       <div>
         <form onSubmit={this.handleSubmit} className="popup">
-          <h1>Create new data</h1>
+          <h1>Create new contact</h1>
           {this.renderSingleInput('name', 'Name (Required)')}
           {this.renderMultipleInput('emails', 'Emails', 'email')}
           {this.renderMultipleInput('phones', 'Phones', 'tel')}
