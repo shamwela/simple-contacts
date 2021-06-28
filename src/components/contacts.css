@@ -1,9 +1,8 @@
-#contacts {
-  display: flex;
-  flex-direction: column;
-  gap: 5vh;
+.contact {
+  padding: 1rem 0;
+  cursor: pointer;
 }
 
-.contact {
-  cursor: pointer;
+.contact:hover {
+  background-color: hsl(0, 0%, 20%);
 }

@@ -3,7 +3,7 @@ import './contacts.css';
 
 const Contacts = ({ contacts, onOpen }) => {
   return (
-    <div id="contacts">
+    <div>
       {contacts.map((contact, index) => (
         <div key={index} onClick={() => onOpen(contact)} className="contact">
           {contact.name}

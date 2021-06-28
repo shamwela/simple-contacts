@@ -1,12 +1,8 @@
 :root {
-  --black: #000;
-  --white: #fafafa;
-  --blue: #276ef1;
-  --red: #dc3545;
-  --dominant-color: var(--black);
-  --secondary-color: var(--white);
-  --accent-color: var(--blue);
-  --danger-color: var(--red);
+  --dominant-color: #000;
+  --secondary-color: #fafafa;
+  --accent-color: #276ef1;
+  --danger-color: #dc3545;
 }
 
 * {
