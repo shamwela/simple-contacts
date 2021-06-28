@@ -8,9 +8,9 @@ class ContactDetails extends Component {
   };
 
   hasContactDetails = ({ emails, phones }) => {
-    const isEmailsEmpty = emails.every((email) => email === '');
-    const isPhonesEmpty = phones.every((phone) => phone === '');
-    return !isEmailsEmpty && !isPhonesEmpty;
+    const emailsHasValue = emails.some((email) => email !== '');
+    const phonesHasValue = phones.every((phone) => phone !== '');
+    return emailsHasValue || phonesHasValue;
   };
 
   handleEditContactFormClose = () => {
