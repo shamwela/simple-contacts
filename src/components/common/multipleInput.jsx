@@ -15,14 +15,14 @@ const MultipleInput = ({
       <label htmlFor={name}>{label}</label>
       {arrayData.map((value, index) => (
         <div key={index}>
-          <div className="d-flex">
+          <div className="mb-2 d-flex justify-content-between">
             <input
               value={value}
               onChange={(e) => onChange(e, index)}
               name={name}
               id={name}
               type={type}
-              className="form-control mb-2"
+              className="form-control"
             />
             <button
               onClick={(e) => onInputDelete(e, index)}
@@ -35,7 +35,11 @@ const MultipleInput = ({
           {error && <div className="d-block alert alert-danger">{error}</div>}
         </div>
       ))}
-      <button onClick={onAddNewInput} name={name} className="btn btn-primary">
+      <button
+        onClick={onAddNewInput}
+        name={name}
+        className="d-block btn btn-primary"
+      >
         + Add {name}
       </button>
     </div>
