@@ -1,4 +1,5 @@
 import React from 'react';
+import Error from './error';
 
 const MultipleInput = ({
   arrayData,
@@ -32,7 +33,7 @@ const MultipleInput = ({
               <i className="fa fa-trash" />
             </button>
           </div>
-          {error && <div className="d-block alert alert-danger">{error}</div>}
+          {error && <Error error={error} />}
         </div>
       ))}
       <button
