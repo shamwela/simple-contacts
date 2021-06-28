@@ -3,16 +3,19 @@ import './search.css';
 
 const Search = ({ search, onSearch }) => {
   return (
-    <input
-      value={search}
-      onChange={(e) => onSearch(e.target.value)}
-      className="form-control"
-      type="search"
-      id="search"
-      name="search"
-      aria-label="Search"
-      placeholder="Search"
-    />
+    <div id="search">
+      <input
+        value={search}
+        onChange={(e) => onSearch(e.target.value)}
+        className="form-control"
+        type="search"
+        id="search-input"
+        name="search-input"
+        aria-label="Search Input"
+        placeholder="Search contact"
+      />
+      <i id="search-icon" className="fa fa-search" />
+    </div>
   );
 };
 

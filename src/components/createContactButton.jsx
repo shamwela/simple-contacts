@@ -9,7 +9,7 @@ class CreateContactButton extends Component {
         className="btn btn-primary"
         onClick={this.props.onCreateContact}
       >
-        + Create contact
+        <i className="fa fa-plus" /> Create contact
       </button>
     );
   }

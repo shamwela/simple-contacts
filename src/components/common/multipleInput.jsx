@@ -29,7 +29,7 @@ const MultipleInput = ({
               name={name}
               className="btn btn-danger"
             >
-              Delete
+              <i className="fa fa-trash" />
             </button>
           </div>
           {error && <div className="d-block alert alert-danger">{error}</div>}
@@ -40,7 +40,7 @@ const MultipleInput = ({
         name={name}
         className="d-block btn btn-primary"
       >
-        + Add {name}
+        <i className="fa fa-plus" /> Add {name}
       </button>
     </div>
   );

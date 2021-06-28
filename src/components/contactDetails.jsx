@@ -75,18 +75,18 @@ class ContactDetails extends Component {
             onClick={() => this.setState({ isEditContactFormOpened: true })}
             className="btn btn-primary"
           >
-            Edit
+            <i className="fa fa-edit" /> Edit
           </button>
 
           <button
             onClick={() => onDeleteContact(contact)}
             className="btn btn-danger"
           >
-            Delete
+            <i className="fa fa-trash" /> Delete
           </button>
 
           <button onClick={onContactDetailsClose} className="btn btn-secondary">
-            Close
+            <i className="fa fa-window-close" /> Close
           </button>
         </div>
 

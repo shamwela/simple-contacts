@@ -130,7 +130,7 @@ class Form extends Component {
       type="submit"
       className="btn btn-primary"
     >
-      Save
+      <i className="fa fa-save" /> Save
     </button>
   );
 
@@ -139,7 +139,7 @@ class Form extends Component {
       onClick={(e) => this.props.onContactFormClose(e.preventDefault())}
       className="btn btn-secondary"
     >
-      Cancel
+      <i className="fa fa-window-close" /> Cancel
     </button>
   );
 }
