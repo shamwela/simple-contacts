@@ -7,7 +7,7 @@ class ContactDetails extends Component {
     isEditContactFormOpened: false,
   };
 
-  hasValues = ({ emails, phones }) => {
+  hasContactDetails = ({ emails, phones }) => {
     const isEmailsEmpty = emails.every((email) => email === '');
     const isPhonesEmpty = phones.every((phone) => phone === '');
     return !isEmailsEmpty && !isPhonesEmpty;
@@ -38,14 +38,14 @@ class ContactDetails extends Component {
         <div className="popup d-flex flex-column">
           <h1>{name}</h1>
 
-          {!this.hasValues(contact) && (
+          {!this.hasContactDetails(contact) && (
             <>
               <h2>No contact info</h2>
               <p>Edit this contact to add contact details</p>
             </>
           )}
 
-          {this.hasValues(contact) && (
+          {this.hasContactDetails(contact) && (
             <>
               <h2>Contact details</h2>
               {emails.map((email, index) => (
