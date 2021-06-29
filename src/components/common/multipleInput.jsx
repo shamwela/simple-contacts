@@ -27,7 +27,6 @@ const MultipleInput = ({
               value={value}
               onChange={(e) => onChange(e, index)}
               name={name}
-              id={name}
               type={type}
               className="form-control"
             />

@@ -12,10 +12,6 @@
   color: var(--secondary-color);
 }
 
-*:focus {
-  outline: none;
-}
-
 body {
   background: var(--dominant-color);
   line-height: 1.5;

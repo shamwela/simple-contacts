@@ -72,7 +72,7 @@ class Form extends Component {
   handleInputDelete = (e, index) => {
     e.preventDefault();
     const data = { ...this.state.data };
-    const name = e.target.name;
+    const name = e.currentTarget.name;
     data[name].splice(index, 1);
     this.setState({ data });
   };
@@ -80,7 +80,7 @@ class Form extends Component {
   handleAddNewInput = (e) => {
     e.preventDefault();
     const data = { ...this.state.data };
-    const name = e.target.name;
+    const name = e.currentTarget.name;
     data[name].push('');
     this.setState({ data });
   };
