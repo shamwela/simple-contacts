@@ -1,9 +1,11 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './search.css';
 
 const Search = ({ search, onSearch }) => {
   return (
     <div id="search">
+      <FontAwesomeIcon icon="search" id="search-icon" />
       <input
         value={search}
         onChange={(e) => onSearch(e.target.value)}
@@ -14,7 +16,6 @@ const Search = ({ search, onSearch }) => {
         aria-label="Search Input"
         placeholder="Search contact"
       />
-      <i id="search-icon" className="fa fa-search" />
     </div>
   );
 };

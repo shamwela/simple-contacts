@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Joi from 'joi';
 import SingleInput from './singleInput';
 import MultipleInput from './multipleInput';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class Form extends Component {
   state = {
@@ -130,7 +131,7 @@ class Form extends Component {
       type="submit"
       className="btn btn-primary"
     >
-      <i className="fa fa-save" /> Save
+      <FontAwesomeIcon icon="save" /> Save
     </button>
   );
 
@@ -139,7 +140,7 @@ class Form extends Component {
       onClick={(e) => this.props.onContactFormClose(e.preventDefault())}
       className="btn btn-secondary"
     >
-      <i className="fa fa-window-close" /> Cancel
+      <FontAwesomeIcon icon="window-close" /> Cancel
     </button>
   );
 }

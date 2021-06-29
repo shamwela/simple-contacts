@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './createContactButton.css';
 
 class CreateContactButton extends Component {
@@ -9,7 +10,7 @@ class CreateContactButton extends Component {
         className="btn btn-primary"
         onClick={this.props.onCreateContact}
       >
-        <i className="fa fa-plus" /> Create contact
+        <FontAwesomeIcon icon="plus" /> Create contact
       </button>
     );
   }

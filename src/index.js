@@ -1,10 +1,35 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'font-awesome/css/font-awesome.min.css';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import {
+  faSearch,
+  faPlus,
+  faEdit,
+  faTrash,
+  faWindowClose,
+  faUser,
+  faEnvelope,
+  faPhone,
+  faExclamationTriangle,
+  faSave,
+} from '@fortawesome/free-solid-svg-icons';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+library.add(
+  faSearch,
+  faPlus,
+  faEdit,
+  faTrash,
+  faWindowClose,
+  faUser,
+  faEnvelope,
+  faPhone,
+  faExclamationTriangle,
+  faSave
+);
 
 ReactDOM.render(
   <React.StrictMode>

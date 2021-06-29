@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import EditContactForm from './editContactForm';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class ContactDetails extends Component {
   state = {
@@ -36,7 +37,9 @@ class ContactDetails extends Component {
     return (
       <>
         <div className="popup">
-          <h1>{name}</h1>
+          <h1>
+            <FontAwesomeIcon icon="user" /> {name}
+          </h1>
 
           {!this.hasContactDetails(contact) && (
             <>
@@ -48,6 +51,9 @@ class ContactDetails extends Component {
           {this.hasContactDetails(contact) && (
             <>
               <h2>Contact details</h2>
+              <h3>
+                <FontAwesomeIcon icon="envelope" /> Email
+              </h3>
               {emails.map((email, index) => (
                 <a
                   key={index}
@@ -58,6 +64,10 @@ class ContactDetails extends Component {
                   {email}
                 </a>
               ))}
+
+              <h3>
+                <FontAwesomeIcon icon="phone" /> Phone
+              </h3>
               {phones.map((phone, index) => (
                 <a
                   key={index}
@@ -75,18 +85,18 @@ class ContactDetails extends Component {
             onClick={() => this.setState({ isEditContactFormOpened: true })}
             className="btn btn-primary"
           >
-            <i className="fa fa-edit" /> Edit
+            <FontAwesomeIcon icon="edit" /> Edit
           </button>
 
           <button
             onClick={() => onDeleteContact(contact)}
             className="btn btn-danger"
           >
-            <i className="fa fa-trash" /> Delete
+            <FontAwesomeIcon icon="trash" /> Delete
           </button>
 
           <button onClick={onContactDetailsClose} className="btn btn-secondary">
-            <i className="fa fa-window-close" /> Close
+            <FontAwesomeIcon icon="window-close" /> Close
           </button>
         </div>
 

@@ -3,15 +3,18 @@
   position: relative;
 }
 
-#search-input {
-  text-indent: 20px;
-}
-
 #search-icon {
   font-size: 1rem;
-  color: var(--dominant-color);
   position: absolute;
   top: 50%;
   left: 10px;
   transform: translateY(-50%);
+}
+
+#search-icon > path {
+  color: var(--dominant-color);
+}
+
+#search-input {
+  text-indent: 20px;
 }

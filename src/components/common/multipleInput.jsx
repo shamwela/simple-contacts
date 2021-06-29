@@ -1,5 +1,6 @@
 import React from 'react';
 import Error from './error';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const MultipleInput = ({
   arrayData,
@@ -13,7 +14,12 @@ const MultipleInput = ({
 }) => {
   return (
     <div className="form-group">
-      <label htmlFor={name}>{label}</label>
+      <label htmlFor={name}>
+        {name === 'emails' && <FontAwesomeIcon icon="envelope" />}
+        {name === 'phones' && <FontAwesomeIcon icon="phone" />}
+        &nbsp;
+        {label}
+      </label>
       {arrayData.map((value, index) => (
         <div key={index}>
           <div className="mb-2 d-flex justify-content-between">
@@ -30,7 +36,7 @@ const MultipleInput = ({
               name={name}
               className="btn btn-danger"
             >
-              <i className="fa fa-trash" />
+              <FontAwesomeIcon icon="trash" />
             </button>
           </div>
           {error && <Error error={error} />}
@@ -41,7 +47,7 @@ const MultipleInput = ({
         name={name}
         className="d-block btn btn-primary"
       >
-        <i className="fa fa-plus" /> Add {name}
+        <FontAwesomeIcon icon="plus" /> Add {name}
       </button>
     </div>
   );
