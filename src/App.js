@@ -11,6 +11,7 @@ import CreateContactForm from './components/createContactForm'
 import ContactDetails from './components/contactDetails'
 import Contacts from './components/contacts'
 import './App.css'
+import SignInPage from './components/SignInPage'
 
 const firebaseApp = firebase.initializeApp(firebaseConfig)
 const firebaseAppAuth = firebaseApp.auth()
@@ -140,10 +141,7 @@ class App extends Component {
             )}
           </div>
         ) : (
-          <>
-            <button onClick={signInWithGoogle}>Continue with Google</button>
-            <small>Your data won't be shared with anyone.</small>
-          </>
+          <SignInPage signInWithGoogle={signInWithGoogle} />
         )}
       </>
     )
