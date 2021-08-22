@@ -10,14 +10,22 @@ import CreateContactButton from './components/createContactButton'
 import CreateContactForm from './components/createContactForm'
 import ContactDetails from './components/contactDetails'
 import Contacts from './components/contacts'
-import './App.css'
 import SignInPage from './components/SignInPage'
+import styled from 'styled-components'
+import './App.css'
 
 const firebaseApp = firebase.initializeApp(firebaseConfig)
 const firebaseAppAuth = firebaseApp.auth()
 const providers = {
   googleProvider: new firebase.auth.GoogleAuthProvider(),
 }
+
+const Header = styled.div`
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`
 
 class App extends Component {
   state = {
@@ -107,7 +115,10 @@ class App extends Component {
       <>
         {user ? (
           <div id='app'>
-            <h1 id='app-title'>Simple Contacts</h1>
+            <Header>
+              <h1 id='app-title'>Contacts</h1>
+              <button onClick={signOut}>Sign out</button>
+            </Header>
 
             <Search search={search} onSearch={this.handleSearch} />
 
