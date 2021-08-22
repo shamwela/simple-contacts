@@ -117,7 +117,7 @@ class App extends Component {
           <div id='app'>
             <Header>
               <h1 id='app-title'>Contacts</h1>
-              <button onClick={signOut}>Sign out</button>
+              <button onClick={signOut} className='btn btn-outline-light'>Sign out</button>
             </Header>
 
             <Search search={search} onSearch={this.handleSearch} />

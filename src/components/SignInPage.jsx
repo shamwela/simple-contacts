@@ -5,6 +5,7 @@ import styled from 'styled-components'
 const StyledSignInPage = styled.div`
   width: 100%;
   height: 100vh;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -15,7 +16,9 @@ const StyledSignInPage = styled.div`
 export default function SignInPage({ signInWithGoogle }) {
   return (
     <StyledSignInPage>
-      <button onClick={signInWithGoogle}>Continue with Google</button>
+      <button onClick={signInWithGoogle} className='btn btn-primary'>
+        Continue with Google
+      </button>
       <small>Your data won't be shared with anyone.</small>
     </StyledSignInPage>
   )
