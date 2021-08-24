@@ -6,10 +6,10 @@
 }
 
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: system-ui, sans-serif;
   color: var(--secondary-color);
 }
 
@@ -22,12 +22,11 @@ h1,
 h2,
 h3 {
   line-height: 1.1;
-  font-weight: 900;
+  font-weight: 700;
 }
 
 h1,
 h2,
-h3,
 p {
   font-size: clamp(
     var(--fluid-type-min, 1rem),
@@ -40,18 +39,17 @@ p {
 h1 {
   --fluid-type-min: 2rem;
   --fluid-type-target: 5vw;
-  --fluid-type-max: 4rem;
+  --fluid-type-max: 3rem;
   max-width: 15ch;
 }
 
 h2 {
   --fluid-type-min: 1.8rem;
-  --fluid-type-max: 3rem;
+  --fluid-type-max: 2rem;
 }
 
 h3 {
-  --fluid-type-min: 1.5rem;
-  --fluid-type-max: 2.5rem;
+  font-size: inherit;
 }
 
 h2,
