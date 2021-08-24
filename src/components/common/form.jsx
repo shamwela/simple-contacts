@@ -3,8 +3,6 @@ import Joi from 'joi'
 import SingleInput from './singleInput'
 import MultipleInput from './multipleInput'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import firebase from 'firebase/app'
-import 'firebase/firestore'
 
 class Form extends Component {
   state = {
@@ -85,27 +83,6 @@ class Form extends Component {
     const name = e.currentTarget.name
     data[name].push('')
     this.setState({ data })
-  }
-
-  handleSubmit = (e) => {
-    e.preventDefault()
-    const errors = this.validateForm()
-    this.setState({ errors: errors || {} })
-    if (errors) return
-
-    const userID = firebase.auth().currentUser.uid
-    const { id: contactID, name, emails, phones } = this.state.data
-
-    firebase
-      .firestore()
-      .collection(userID)
-      .doc(contactID)
-      .set({
-        name,
-        emails,
-        phones,
-      })
-      .catch((error) => console.log(error))
   }
 
   renderSingleInput = (name, label, type = 'text') => {
