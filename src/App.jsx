@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { v4 as uuidv4 } from 'uuid'
 import _ from 'lodash'
 import withFirebaseAuth from 'react-with-firebase-auth'
 import firebase from 'firebase/app'
@@ -29,30 +28,36 @@ const Header = styled.div`
 
 class App extends Component {
   state = {
-    contacts: [
-      {
-        id: uuidv4(),
-        name: 'Bob',
-        emails: ['bob@gmail.com'],
-        phones: ['123'],
-      },
-      {
-        id: uuidv4(),
-        name: 'Alex',
-        emails: ['alex@gmail.com'],
-        phones: ['123'],
-      },
-      {
-        id: uuidv4(),
-        name: 'Empty Contact',
-        emails: [''],
-        phones: [''],
-      },
-    ],
+    contacts: [],
     search: '',
     openedContact: {},
     isCreateContactFormOpened: false,
     isContactDetailsOpened: false,
+  }
+
+  componentDidUpdate() {
+    const user = firebase.auth().currentUser
+
+    // If the presence of the user is not checked, the app will crash
+    if (user) {
+      const userID = user.uid
+
+      firebase
+        .firestore()
+        .collection(userID)
+        .onSnapshot(
+          (querySnapshot) => {
+            const contacts = []
+
+            querySnapshot.forEach((document) => {
+              contacts.push(document.data())
+            })
+
+            this.setState({ contacts })
+          },
+          (error) => console.log(error)
+        )
+    }
   }
 
   handleSearch = (search) => {
@@ -117,7 +122,9 @@ class App extends Component {
           <div id='app'>
             <Header>
               <h1 id='app-title'>Contacts</h1>
-              <button onClick={signOut} className='btn btn-outline-light'>Sign out</button>
+              <button onClick={signOut} className='btn btn-outline-light'>
+                Sign out
+              </button>
             </Header>
 
             <Search search={search} onSearch={this.handleSearch} />

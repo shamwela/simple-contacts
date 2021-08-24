@@ -1,16 +1,20 @@
-import React from 'react';
-import './contacts.css';
+import React from 'react'
+import PropTypes from 'prop-types'
+import './contacts.css'
 
-const Contacts = ({ contacts, onOpen }) => {
+export default function Contacts({ contacts, onOpen }) {
   return (
     <div>
       {contacts.map((contact, index) => (
-        <div key={index} onClick={() => onOpen(contact)} className="contact">
+        <div key={index} onClick={() => onOpen(contact)} className='contact'>
           {contact.name}
         </div>
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default Contacts;
+Contacts.propTypes = {
+  contacts: PropTypes.array.isRequired,
+  onOpen: PropTypes.func.isRequired,
+}
