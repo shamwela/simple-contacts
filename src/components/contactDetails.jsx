@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import EditContactForm from './editContactForm'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import firebase from 'firebase/app'
 
 class ContactDetails extends Component {
   state = {
@@ -14,6 +15,20 @@ class ContactDetails extends Component {
     return emailsHasValue || phonesHasValue
   }
 
+  handleDelete = () => {
+    const userID = firebase.auth().currentUser.uid
+    const contactID = this.state.contact.id
+
+    firebase
+      .firestore()
+      .collection(userID)
+      .doc(contactID)
+      .delete()
+      .catch((error) => console.log(error))
+
+    this.handleContactFormClose()
+  }
+
   handleEditContactFormClose = () => {
     this.setState({ isEditContactFormOpened: false })
   }
@@ -24,7 +39,7 @@ class ContactDetails extends Component {
   }
 
   render() {
-    const { onDeleteContact, onContactDetailsClose } = this.props
+    const { onContactDetailsClose } = this.props
     const { contact, isEditContactFormOpened } = this.state
     const { name, emails, phones } = contact
 
@@ -82,10 +97,7 @@ class ContactDetails extends Component {
             <FontAwesomeIcon icon='edit' /> Edit
           </button>
 
-          <button
-            onClick={() => onDeleteContact(contact)}
-            className='btn btn-danger'
-          >
+          <button onClick={this.handleDelete} className='btn btn-danger'>
             <FontAwesomeIcon icon='trash' /> Delete
           </button>
 

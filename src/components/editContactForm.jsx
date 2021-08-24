@@ -1,7 +1,6 @@
 import React from 'react'
 import Form from './common/form'
 import firebase from 'firebase/app'
-import 'firebase/firestore'
 
 export default class EditContactForm extends Form {
   state = {

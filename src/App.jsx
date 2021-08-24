@@ -64,20 +64,6 @@ class App extends Component {
     this.setState({ search })
   }
 
-  handleSaveContact = (contact) => {
-    let contacts = [...this.state.contacts]
-
-    // delete the old contact if it already exists
-    contacts = contacts.filter((item) => item.id !== contact.id)
-
-    // add the new contact to the contacts
-    contacts.push(contact)
-
-    this.setState({ contacts, isCreateContactFormOpened: false })
-
-    this.handleOpenContactDetails(contact)
-  }
-
   handleContactFormClose = () => {
     this.setState({ isCreateContactFormOpened: false })
   }
@@ -148,7 +134,6 @@ class App extends Component {
             {isContactDetailsOpened && (
               <ContactDetails
                 contact={openedContact}
-                onDeleteContact={this.handleDeleteContact}
                 onContactDetailsClose={() =>
                   this.setState({ isContactDetailsOpened: false })
                 }
