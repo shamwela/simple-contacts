@@ -95,6 +95,7 @@ class Form extends Component {
 
     const userID = firebase.auth().currentUser.uid
     const { id: contactID, name, emails, phones } = this.state.data
+
     firebase
       .firestore()
       .collection(userID)
@@ -151,7 +152,7 @@ class Form extends Component {
 
   renderCancelButton = () => (
     <button
-      onClick={(e) => this.props.onContactFormClose(e.preventDefault())}
+      onClick={(event) => this.props.onContactFormClose(event.preventDefault())}
       className='btn btn-secondary'
     >
       <FontAwesomeIcon icon='window-close' /> Cancel

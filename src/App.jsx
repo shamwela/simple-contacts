@@ -40,17 +40,17 @@ class App extends Component {
 
     // If the presence of the user is not checked, the app will crash
     if (user) {
-      const userID = user.uid
-
       firebase
         .firestore()
-        .collection(userID)
+        .collection(user.uid)
         .onSnapshot(
           (querySnapshot) => {
             const contacts = []
 
             querySnapshot.forEach((document) => {
-              contacts.push(document.data())
+              const { id } = document
+              const contact = { id, ...document.data() }
+              contacts.push(contact)
             })
 
             this.setState({ contacts })
@@ -136,7 +136,6 @@ class App extends Component {
             />
             {isCreateContactFormOpened && (
               <CreateContactForm
-                onSaveContact={(contact) => this.handleSaveContact(contact)}
                 onContactFormClose={this.handleContactFormClose}
               />
             )}
@@ -153,7 +152,6 @@ class App extends Component {
                 onContactDetailsClose={() =>
                   this.setState({ isContactDetailsOpened: false })
                 }
-                onSaveContact={(contact) => this.handleSaveContact(contact)}
                 onContactFormClose={this.handleContactFormClose}
               />
             )}

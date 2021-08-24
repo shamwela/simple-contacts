@@ -1,44 +1,38 @@
-import React, { Component } from 'react';
-import EditContactForm from './editContactForm';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { Component } from 'react'
+import EditContactForm from './editContactForm'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class ContactDetails extends Component {
   state = {
     contact: this.props.contact,
     isEditContactFormOpened: false,
-  };
+  }
 
   hasContactDetails = ({ emails, phones }) => {
-    const emailsHasValue = emails.some((email) => email !== '');
-    const phonesHasValue = phones.every((phone) => phone !== '');
-    return emailsHasValue || phonesHasValue;
-  };
+    const emailsHasValue = emails.some((email) => email !== '')
+    const phonesHasValue = phones.every((phone) => phone !== '')
+    return emailsHasValue || phonesHasValue
+  }
 
   handleEditContactFormClose = () => {
-    this.setState({ isEditContactFormOpened: false });
-  };
-
-  handleSaveContact = (contact) => {
-    this.handleEditContactFormClose();
-    this.setState({ contact: contact });
-    this.props.onSaveContact(contact);
-  };
+    this.setState({ isEditContactFormOpened: false })
+  }
 
   handleContactFormClose = () => {
-    this.handleEditContactFormClose();
-    this.props.onContactFormClose();
-  };
+    this.handleEditContactFormClose()
+    this.props.onContactFormClose()
+  }
 
   render() {
-    const { onDeleteContact, onContactDetailsClose } = this.props;
-    const { contact, isEditContactFormOpened } = this.state;
-    const { name, emails, phones } = contact;
+    const { onDeleteContact, onContactDetailsClose } = this.props
+    const { contact, isEditContactFormOpened } = this.state
+    const { name, emails, phones } = contact
 
     return (
       <>
-        <div className="popup">
+        <div className='popup'>
           <h1>
-            <FontAwesomeIcon icon="user" /> {name}
+            <FontAwesomeIcon icon='user' /> {name}
           </h1>
 
           {!this.hasContactDetails(contact) && (
@@ -52,28 +46,28 @@ class ContactDetails extends Component {
             <>
               <h2>Contact details</h2>
               <h3>
-                <FontAwesomeIcon icon="envelope" /> Email
+                <FontAwesomeIcon icon='envelope' /> Email
               </h3>
               {emails.map((email, index) => (
                 <a
                   key={index}
                   href={`mailto:${email}`}
-                  target="_blank"
-                  rel="noreferrer"
+                  target='_blank'
+                  rel='noreferrer'
                 >
                   {email}
                 </a>
               ))}
 
               <h3>
-                <FontAwesomeIcon icon="phone" /> Phone
+                <FontAwesomeIcon icon='phone' /> Phone
               </h3>
               {phones.map((phone, index) => (
                 <a
                   key={index}
                   href={`tel:${phone}`}
-                  target="_blank"
-                  rel="noreferrer"
+                  target='_blank'
+                  rel='noreferrer'
                 >
                   {phone}
                 </a>
@@ -83,33 +77,32 @@ class ContactDetails extends Component {
 
           <button
             onClick={() => this.setState({ isEditContactFormOpened: true })}
-            className="btn btn-primary"
+            className='btn btn-primary'
           >
-            <FontAwesomeIcon icon="edit" /> Edit
+            <FontAwesomeIcon icon='edit' /> Edit
           </button>
 
           <button
             onClick={() => onDeleteContact(contact)}
-            className="btn btn-danger"
+            className='btn btn-danger'
           >
-            <FontAwesomeIcon icon="trash" /> Delete
+            <FontAwesomeIcon icon='trash' /> Delete
           </button>
 
-          <button onClick={onContactDetailsClose} className="btn btn-secondary">
-            <FontAwesomeIcon icon="window-close" /> Close
+          <button onClick={onContactDetailsClose} className='btn btn-secondary'>
+            <FontAwesomeIcon icon='window-close' /> Close
           </button>
         </div>
 
         {isEditContactFormOpened && (
           <EditContactForm
             contact={contact}
-            onSaveContact={this.handleSaveContact}
             onContactFormClose={this.handleContactFormClose}
           />
         )}
       </>
-    );
+    )
   }
 }
 
-export default ContactDetails;
+export default ContactDetails
