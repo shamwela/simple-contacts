@@ -26,7 +26,7 @@ class ContactDetails extends Component {
       .delete()
       .catch((error) => console.log(error))
 
-    this.handleContactFormClose()
+      this.props.onContactDetailsClose()
   }
 
   handleEditContactFormClose = () => {
