@@ -11,10 +11,9 @@
   transform: translateY(-50%);
 }
 
-#search-icon > path {
-  color: var(--dominant-color);
-}
-
 #search-input {
   text-indent: 20px;
+  background-color: #202020;
+  color: white;
+  border: none;
 }

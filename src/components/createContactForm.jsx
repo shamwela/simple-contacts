@@ -42,12 +42,14 @@ class CreateContactForm extends Form {
     return (
       <div>
         <form onSubmit={this.handleSubmit} className='popup'>
-          <h1>Create new contact</h1>
-          {this.renderSingleInput('name', 'Name (Required)')}
+          <h1>New contact</h1>
+          {this.renderSingleInput('name', 'Name')}
           {this.renderMultipleInput('emails', 'Emails', 'email')}
           {this.renderMultipleInput('phones', 'Phones', 'tel')}
-          {this.renderSubmitButton()}
-          {this.renderCancelButton()}
+          <div className='d-flex gap-2'>
+            {this.renderSubmitButton()}
+            {this.renderCancelButton()}
+          </div>
         </form>
       </div>
     )

@@ -16,6 +16,7 @@ const StyledSignInPage = styled.div`
 export default function SignInPage({ signInWithGoogle }) {
   return (
     <StyledSignInPage>
+      <h1>Simple contacts</h1>
       <button onClick={signInWithGoogle} className='btn btn-primary'>
         Continue with Google
       </button>

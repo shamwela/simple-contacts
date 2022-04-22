@@ -1,15 +1,7 @@
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import './error.css';
+import React from 'react'
 
 const Error = ({ error }) => {
-  return (
-    <div className="alert alert-danger">
-      <FontAwesomeIcon icon="exclamation-triangle" className="error-icon" />
-      &nbsp;
-      {error}
-    </div>
-  );
-};
+  return <div className='alert alert-danger'>{error}</div>
+}
 
-export default Error;
+export default Error

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import Joi from 'joi'
 import SingleInput from './singleInput'
 import MultipleInput from './multipleInput'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class Form extends Component {
   state = {
@@ -123,7 +122,7 @@ class Form extends Component {
       type='submit'
       className='btn btn-primary'
     >
-      <FontAwesomeIcon icon='save' /> Save
+      Save
     </button>
   )
 
@@ -132,7 +131,7 @@ class Form extends Component {
       onClick={(event) => this.props.onContactFormClose(event.preventDefault())}
       className='btn btn-secondary'
     >
-      <FontAwesomeIcon icon='window-close' /> Cancel
+      Cancel
     </button>
   )
 }

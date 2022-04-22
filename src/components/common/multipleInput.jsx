@@ -1,6 +1,6 @@
-import React from 'react';
-import Error from './error';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from 'react'
+import Error from './error'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const MultipleInput = ({
   arrayData,
@@ -13,43 +13,38 @@ const MultipleInput = ({
   onAddNewInput,
 }) => {
   return (
-    <div className="form-group">
-      <label htmlFor={name}>
-        {name === 'emails' && <FontAwesomeIcon icon="envelope" />}
-        {name === 'phones' && <FontAwesomeIcon icon="phone" />}
-        &nbsp;
-        {label}
-      </label>
+    <div className='form-group'>
+      <label htmlFor={name}>{label}</label>
       {arrayData.map((value, index) => (
         <div key={index}>
-          <div className="mb-2 d-flex justify-content-between">
+          <div className='mb-2 d-flex justify-content-between'>
             <input
               value={value}
               onChange={(e) => onChange(e, index)}
               name={name}
               type={type}
-              className="form-control"
+              className='form-control rounded-0'
             />
             <button
               onClick={(e) => onInputDelete(e, index)}
               name={name}
-              className="btn btn-danger"
+              className='btn btn-danger rounded-0'
             >
-              <FontAwesomeIcon icon="trash" />
+              Delete
             </button>
           </div>
-          {error && <Error error={error} />}
+          {error ? <Error error={error} /> : null}
         </div>
       ))}
       <button
         onClick={onAddNewInput}
         name={name}
-        className="d-block btn btn-primary"
+        className='d-block btn btn-primary'
       >
-        <FontAwesomeIcon icon="plus" /> Add {name}
+        <FontAwesomeIcon icon='plus' /> Add {name}
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default MultipleInput;
+export default MultipleInput
