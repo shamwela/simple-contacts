@@ -4,13 +4,17 @@ import './contacts.css'
 
 export default function Contacts({ contacts, onOpen }) {
   return (
-    <div>
-      {contacts.map((contact, index) => (
-        <div key={index} onClick={() => onOpen(contact)} className='contact'>
+    <>
+      {contacts.map((contact) => (
+        <div
+          onClick={() => onOpen(contact)}
+          key={contact.id}
+          className='contact'
+        >
           {contact.name}
         </div>
       ))}
-    </div>
+    </>
   )
 }
 

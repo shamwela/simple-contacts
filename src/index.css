@@ -9,7 +9,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: system-ui, sans-serif;
+  font-family: Helvetica, sans-serif;
   color: var(--secondary-color);
 }
 
@@ -27,38 +27,15 @@ h3 {
 
 h1,
 h2,
-p {
-  font-size: clamp(
-    var(--fluid-type-min, 1rem),
-    calc(1rem + var(--fluid-type-target, 3vw)),
-    /* use calc() because if you use only a viewport unit to size your type, the font size won't change if you zoom */
-      var(--fluid-type-max, 1.3rem)
-  );
+label {
+  font-size: 2rem;
 }
 
-h1 {
-  --fluid-type-min: 2rem;
-  --fluid-type-target: 5vw;
-  --fluid-type-max: 3rem;
-  max-width: 15ch;
-}
-
-h2 {
-  --fluid-type-min: 1.8rem;
-  --fluid-type-max: 2rem;
-}
-
-h3 {
-  font-size: inherit;
-}
-
-h2,
-h3 {
-  max-width: 30ch;
-}
-
-p {
-  max-width: 60ch;
+input {
+  /* These !important overwrite Bootstrap's styles. Improve this later. */
+  background-color: #202020 !important;
+  color: white !important;
+  border: none !important;
 }
 
 a {
@@ -67,10 +44,6 @@ a {
 
 a:focus {
   text-decoration: underline;
-}
-
-label {
-  font-size: 1.5rem;
 }
 
 button {
