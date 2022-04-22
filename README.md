@@ -2,4 +2,4 @@
 
 A simple contacts app built with React
 
-[Website](https://simple-contacts.netlify.app)
+https://simple-contacts.netlify.app
